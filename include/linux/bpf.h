@@ -11,6 +11,7 @@
 #include <linux/workqueue.h>
 #include <linux/file.h>
 #include <linux/percpu.h>
+#include <linux/err.h>
 
 struct perf_event;
 struct bpf_map;
@@ -227,7 +228,7 @@ bool bpf_prog_array_compatible(struct bpf_array *array, const struct bpf_prog *f
 const struct bpf_func_proto *bpf_get_trace_printk_proto(void);
 
 typedef unsigned long (*bpf_ctx_copy_t)(void *dst, const void *src,
-					unsigned long len);
+					unsigned long off, unsigned long len);
 
 u64 bpf_event_output(struct bpf_map *map, u64 flags, void *meta, u64 meta_size,
 		     void *ctx, u64 ctx_size, bpf_ctx_copy_t ctx_copy);
@@ -249,7 +250,7 @@ struct bpf_prog_array {
 	struct bpf_prog *progs[0];
 };
 
-struct bpf_prog_array __rcu *bpf_prog_array_alloc(u32 prog_cnt, gfp_t flags);
+struct bpf_prog_array *bpf_prog_array_alloc(u32 prog_cnt, gfp_t flags);
 void bpf_prog_array_free(struct bpf_prog_array __rcu *progs);
 
 void bpf_prog_array_delete_safe(struct bpf_prog_array __rcu *progs,
