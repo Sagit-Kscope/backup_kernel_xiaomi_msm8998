@@ -780,7 +780,7 @@ struct mdss_panel_hdr_properties {
 	u32 blackness_level;
 };
 
-#ifdef CONFIG_MACH_XIAOMI_MSM8998
+#ifdef CONFIG_MACH_XIAOMI
 struct mdss_panel_esd_check {
 	unsigned char check_cmd;
 	unsigned char check_value;
@@ -950,7 +950,7 @@ struct mdss_panel_info {
 	/* esc clk recommended for the panel */
 	u32 esc_clk_rate_hz;
 	
-#ifdef CONFIG_MACH_XIAOMI_MSM8998
+#ifdef CONFIG_MACH_XIAOMI
 	u32 tp_rst_seq[MDSS_DSI_RST_SEQ_LEN];
 	u32 tp_rst_seq_len;
 	u32 esd_err_irq_gpio;
@@ -1036,7 +1036,7 @@ struct mdss_panel_data {
 	struct mutex te_mutex;
 	struct completion te_done;
 	
-#ifdef CONFIG_MACH_XIAOMI_MSM8998
+#ifdef CONFIG_MACH_XIAOMI
 	void (*panel_dead_report)(void);
 #endif
 };
