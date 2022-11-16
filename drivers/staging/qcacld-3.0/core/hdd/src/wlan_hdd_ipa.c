@@ -1,8 +1,5 @@
 /*
- * Copyright (c) 2013-2018, 2021 The Linux Foundation. All rights reserved.
- *
- * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
- *
+ * Copyright (c) 2013-2021 The Linux Foundation. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software for
  * any purpose with or without fee is hereby granted, provided that the
@@ -5798,12 +5795,12 @@ wlan_ipa_eapol_intrabss_fwd_check(qdf_nbuf_t nbuf, uint8_t vdev_id)
 	vdev = ol_txrx_get_vdev_from_vdev_id(vdev_id);
 
 	if (!vdev) {
-		HDD_IPA_LOG(QDF_TRACE_LEVEL_ERROR, "txrx vdev is NULL for vdev_id = %d",
-			    vdev_id);
+		HDD_IPA_LOG(QDF_TRACE_LEVEL_ERROR,
+			    "txrx vdev is NULL for vdev_id = %d", vdev_id);
 		return false;
 	}
 
-	vdev_mac_addr = ol_txrx_get_vdev_mac_addr( vdev);
+	vdev_mac_addr = ol_txrx_get_vdev_mac_addr(vdev);
 
 	if (!vdev_mac_addr)
 		return false;
@@ -5867,7 +5864,6 @@ static void __hdd_ipa_w2i_cb(void *priv, enum ipa_dp_evt_type evt,
 		pdev = cds_get_context(QDF_MODULE_ID_TXRX);
 		if (NULL == pdev) {
 			WMA_LOGE("%s: DP pdev is NULL", __func__);
-			hdd_ipa->ipa_rx_internal_drop_count++;
 			kfree_skb(skb);
 			return;
 		}
